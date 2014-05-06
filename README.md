@@ -6,6 +6,10 @@ Just to get some reality check on my current expenses
 
 Reads a simple .csv file
 
-### npm install
+### Build
+  $ cd web && npm install
+  
+## Run tests
+  & cd test/models && mocha
 
 www.devfishy.com
