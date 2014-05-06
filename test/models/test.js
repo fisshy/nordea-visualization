@@ -1,4 +1,4 @@
-var assert      = require("assert");
+var assert        = require("assert");
 var nordea_parse  = require('../../models/nordea/parse-row');
 
 describe('Parse row', function() {
