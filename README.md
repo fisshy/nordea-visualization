@@ -9,6 +9,7 @@ Reads a simple .csv file and visualizing it using d3.js
 ### Dependencies
         Node 0.10.x
         Mocha
+        MongoDB
 
 ### Build
         
