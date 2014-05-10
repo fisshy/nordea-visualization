@@ -1,5 +1,6 @@
-var assert        = require("assert");
-var nordea_parse  = require('../../models/nordea/parse-row');
+var assert          = require("assert");
+var nordea_parse    = require('../../nordea/parse-row');
+var nordea_convert  = require('../../nordea/convert-row');
 
 describe('Parse row', function() {
 
@@ -27,5 +28,31 @@ describe('Parse row', function() {
       assert.equal(result[3], '15.029,10');
     });
 
-  })
-})
+  });
+});
+
+describe('Convert row to valid mongo schema', function(){
+
+  var result = nordea_parse('2014-05-06,Xtraspar,,"-15,00","15.129,10"');
+
+  var convert = nordea_convert(result);
+
+  it('Should be defined', function() {
+    assert.notEqual(convert, undefined);
+  });
+
+  it('Date should match', function() {
+    assert.equal(+convert.date, +new Date('2014-05-06'));
+  });
+
+  it('Transaction should match', function(){
+    assert.equal(convert.transaction, 'Xtraspar');
+  });
+
+  it('Amount should match', function() {
+    assert.equal(convert.amount, -15);
+  });
+
+});
+
+
