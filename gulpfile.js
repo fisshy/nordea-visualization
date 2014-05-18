@@ -5,7 +5,7 @@ var ngmin   = require('gulp-ngmin');
 var less    = require('gulp-less');
 
 var paths = {
-  scripts: ['assets/src/**/*.js', 'assets/src/*.js'],
+  scripts: ['assets/src/**/*.js', 'assets/src/*.js', 'bower_components/ng-file-upload/angular-file-upload.min.js'],
   less: 'assets/less/*.less'
 };
 
