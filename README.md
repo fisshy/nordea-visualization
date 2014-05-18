@@ -13,12 +13,11 @@ Reads a simple .csv file and visualizing it using d3.js
 
 ### Build
         
-        $ cd web && npm install
-        $ cd models && npm install
+        $ npm install
+        $ gulp
 
 ## Run tests
         $ npm install -g mocha
         $ cd test/models && mocha
-        $ cd test/web && mocha
 
 www.devfishy.com

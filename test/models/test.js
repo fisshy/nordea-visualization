@@ -1,7 +1,5 @@
 var assert          = require("assert");
 var nordea_parse    = require('../../nordea/parse-row');
-var nordea_convert  = require('../../nordea/convert-row');
-
 describe('Parse row', function() {
 
   describe('Check arguments', function() {
@@ -31,9 +29,10 @@ describe('Parse row', function() {
   });
 });
 
-describe('Convert row to valid mongo schema', function(){
+var nordea_convert  = require('../../nordea/convert-row');
 
-  var result = nordea_parse('2014-05-06,Xtraspar,,"-15,00","15.129,10"');
+var tryParseRow = function(row) {
+  var result = nordea_parse(row);
 
   var convert = nordea_convert(result);
 
@@ -52,7 +51,25 @@ describe('Convert row to valid mongo schema', function(){
   it('Amount should match', function() {
     assert.equal(convert.amount, -15);
   });
+};
 
+describe('Convert row to valid mongo schema', function(){
+  tryParseRow('2014-05-06,Xtraspar,,"-15,00","15.129,10"');
+});
+
+var nordea_readfile = require('../../nordea/read-file');
+
+describe('Read exported file', function(){
+  it('Should return data', function() {
+
+    var csvFilePath = '../../nordea/export.csv';
+
+    nordea_readfile(csvFilePath, function next (err, row) {
+        assert.equal(err, null);
+        tryParseRow(row);
+      }
+    );
+  });
 });
 
 
