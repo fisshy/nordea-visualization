@@ -1,3 +1,5 @@
 div.row(class="center-text")
 	div.thumbnail.vert-center
-		button(class="upload btn btn-success btn-block") Upload
+		div(class="upload btn btn-success btn-block")
+			span Upload
+			input(type="file", ng-file-select="onFileSelect($files)")
