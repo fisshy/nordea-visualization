@@ -1,5 +1,6 @@
 var mongoose        = require('mongoose');
 var Schema          = mongoose.Schema;
+mongoose.connect(require('../config/db.js'));
 
 
 var Nordea = new Schema({

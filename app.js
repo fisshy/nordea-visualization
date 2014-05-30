@@ -28,6 +28,7 @@ if ('development' == app.get('env')) {
 
 require('./routes/nordea')(app);
 require('./routes/upload')(app);
+require('./routes/home')(app);
 
 app.get('/', routes.index);
 

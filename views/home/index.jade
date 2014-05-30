@@ -1,0 +1,13 @@
+
+div.row
+table(class="table", ng-hide="product")
+  thead
+    tr
+      td Transaction
+      td Amount
+      td Date
+  tr(ng-repeat="transaction in transactions")
+    td  {{ transaction.transaction }}
+    td  {{ transaction.amount }}
+    td  {{ transaction.date | date:'yyyy-MM-dd HH:mm' }}
+    td

@@ -1,5 +1,5 @@
 angular.module('nordea')
-  .controller('UploadCntrl', function($scope, $upload) {
+  .controller('UploadCntrl', function($scope, $upload, Nordea, $location) {
     $scope.onFileSelect = function($files) {
     	$files = angular.isArray($files) ? $files : [$files];
 	    for (var i = 0; i < $files.length; i++) {
@@ -10,7 +10,8 @@ angular.module('nordea')
 	      }).progress(function(evt) {
 	        
 	      }).success(function(data, status, headers, config) {
-	        console.log(data);
+	       	Nordea.transactions = data;
+	       	$location.url('/home');
 	      });
 	    }
 	  };

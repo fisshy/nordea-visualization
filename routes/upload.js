@@ -1,11 +1,27 @@
-var Nordea = require('../nordea/nordea');
+var NordeaParser = require('../nordea/nordea');
+var Nordea       = require('../models/nordea');
 
 var upload = function(req, res, next) {
   var files = req.files;
   if(files) {
-    var file = files[0];
+    var file = files.file;
+    var nordea = new NordeaParser(file.path);
+    Nordea.remove().exec();
+    nordea.forEach(function each(err, transaction) {
+      if(err) return next(err);
+      if(transaction) {
+        new Nordea(transaction).save(function(err, saved) {
+          if(err) return next(err);
+        });
+      }
+    },
+    function done() {
+      Nordea.find({}, function(err, results){
+        if(err) return next(err);
+        return res.json(results);
+      });
+    });
   }
-  res.json(true);
 };
 
 var template = function(req, res, next) {

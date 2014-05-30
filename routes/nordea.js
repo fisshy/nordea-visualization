@@ -1,14 +1,12 @@
-var Nordea = require('../nordea/nordea');
+var Nordea = require('../models/nordea');
 
-var upload = function(req, res, next) {
-
-};
-
-var template = function() {
-  res.render('/upload/index');
+var transactions = function(req, res, next) {
+  Nordea.find({}, function(err, result) {
+    if(err) return next(err);
+    return res.json(result);
+  });
 };
 
 module.exports = function(app) {
-  app.post('/nordea' , upload);
-  app.get( '/nordea' , template);
+  app.get( '/transactions' , transactions);
 };

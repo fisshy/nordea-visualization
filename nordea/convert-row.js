@@ -4,7 +4,19 @@ module.exports = function(rowArgs) {
   // should probably validate values before parsing :P to be continued...
   converted.date        = new Date(rowArgs[0]);
   converted.transaction = rowArgs[1];
-  converted.amount      = parseFloat(rowArgs[2]);
 
+
+  var split = rowArgs[2].split('.');
+    
+  var validFloat = split.join('');
+
+  validFloat = validFloat.replace(/,/g, '.');
+  
+  converted.amount = parseFloat(validFloat);
+
+
+  if(!converted.transaction || isNaN(converted.amount)) {
+  	return null;
+  }
   return converted;
 };
