@@ -6,8 +6,12 @@ table(class="table", ng-hide="product")
       td Transaction
       td Amount
       td Date
-  tr(ng-repeat="transaction in transactions")
+  tr(
+      ng-repeat="transaction in transactions", 
+      ng-class="{danger : transaction.amount < 0, 'success' : transaction.amount > 0}"
+    )
     td  {{ transaction.transaction }}
     td  {{ transaction.amount }}
     td  {{ transaction.date | date:'yyyy-MM-dd HH:mm' }}
     td
+      div(category="transaction.category")

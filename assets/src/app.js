@@ -6,8 +6,12 @@ angular.module('nordea', ['ngRoute', 'angularFileUpload'])
         templateUrl : '/upload',
         controller  : 'UploadCntrl'
       })
-	  .when('/home', {
+  	  .when('/home', {
         templateUrl : '/home',
-        controller  : 'HomeCntrl'
+        controller  : 'HomeCntrl' 
+      })
+      .when('/categories', {
+        templateUrl : '/categories',
+        controller  : 'CategoryCntrl'
       });
   });
