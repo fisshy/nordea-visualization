@@ -1,11 +1,12 @@
 
 div.row
-table(class="table", ng-hide="product")
+table(class="table category", ng-hide="product")
   thead
     tr
       td Transaction
       td Amount
       td Date
+      td Category
   tr(
       ng-repeat="transaction in transactions", 
       ng-class="{danger : transaction.amount < 0, 'success' : transaction.amount > 0}"
@@ -13,5 +14,5 @@ table(class="table", ng-hide="product")
     td  {{ transaction.transaction }}
     td  {{ transaction.amount }}
     td  {{ transaction.date | date:'yyyy-MM-dd HH:mm' }}
-    td
+    td.col-md-2
       div(category="transaction.category")
