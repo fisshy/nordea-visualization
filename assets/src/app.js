@@ -1,4 +1,4 @@
-angular.module('nordea', ['ngRoute', 'angularFileUpload'])
+angular.module('nordea', ['ngRoute', 'ngResource', 'angularFileUpload'])
   .config(function($routeProvider, $httpProvider) {
     $routeProvider
       //Home

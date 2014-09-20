@@ -1,9 +1,3 @@
-angular.module('nordea').factory('Category', function($http) {
-  var categories;
-  return {
-    categories : categories,
-    load : function() {
-      return $http.get('/categories')
-    }
-  };
+angular.module('nordea').factory('Category', function($resource) {
+  return $resource('/categories/:id', { id : '@_id' });
 });

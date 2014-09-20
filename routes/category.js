@@ -7,6 +7,28 @@ var categories = function(req, res, next) {
   });
 };
 
+var merge = function(req, res, next) {
+  var categoryId = req.params.categoryId;
+  if(categoryId) {
+    Cartegory.find({ _id : categoryId}, function(err, category) {
+      if(err) return next(err);
+      category.name = req.body.name;
+      category.save(function(err) {
+        if(err) return next(err);
+        req.json(category);
+      })
+    })
+  } else {
+    new Category({
+      name : req.body.name
+    }).save(function (err, category) {
+      if(err) return next(err);
+      res.json(category);
+    });
+  }
+};
+
 module.exports = function(app) {
-  app.get( '/categories' , categories);
+  app.get(  '/categories' , categories);
+  app.post( '/categories' , merge);
 };

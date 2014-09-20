@@ -8,5 +8,10 @@ angular.module('nordea').controller('HomeCntrl',
 	  }
 	  $scope.transactions = Nordea.transactions;
 
-	  
+	  $scope.save = function() {
+	  	Nordea.save($scope.transactions).success(
+	  		function(result) {
+	  			//todo somthing
+	  	});
+	  };
 });
