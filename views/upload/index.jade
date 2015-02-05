@@ -1,5 +1,11 @@
-div.row(class="center-text")
-	div.thumbnail.vert-center
-		div(class="upload btn btn-success btn-block")
-			span Upload
-			input(type="file", ng-file-select="onFileSelect($files)")
+extends ../layout
+
+block content
+	div.container(ng-app="nordea")
+		div.row(class="center-text")
+			div.thumbnail.vert-center
+				div(class="upload btn btn-success btn-block")
+					span Upload
+					input(type="file", ng-file-select="onFileSelect($files)")
+	script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js")
+	script(src="/js/upload.min.js")
